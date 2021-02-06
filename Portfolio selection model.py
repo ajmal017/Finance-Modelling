@@ -117,32 +117,6 @@ class portfolio_sd:
         sd=(self.stock_var()+self.cov())**(1/2)
         return sd
 
-   
-def portfolio_s(weights,combo):
-    sum_var=[]
-    for w,tick in zip(weights,combo):
-        sd_tick=RMBK[tick].std()
-        sum_var.append((w**2)*(sd_tick**2))
-    portfolio_weights={}
-    for s,w in zip(combo,weights):
-        portfolio_weights[s]=w
-    tc=2
-    tc_master_combination=itertools.combinations(combo,tc)
-    p_combinations=[]
-    for p_com in tc_master_combination:
-        p_combinations.append(p_com)
-    sum_cov=[]
-    for mini_combo in p_combinations:
-        mini_port=pd.DataFrame()
-        for sec in mini_combo:
-            mini_port[sec]=RMBK[sec]
-        correlation=mini_port.corr()
-        covar=2*portfolio_weights[mini_combo[0]]*portfolio_weights[mini_combo[1]]*\
-            (correlation[sec][0])*(mini_port[mini_combo[0]].std())*(mini_port[mini_combo[1]].std())
-        sum_cov.append(covar)
-    return sum(sum_var)+sum(sum_cov)
-
-
 
 # Create portfolio
 possibles={}
