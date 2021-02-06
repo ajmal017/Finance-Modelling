@@ -37,13 +37,23 @@ data=pd.read_excel(wb,sheet_name=0)
 #N=wb_tickers.nrows
 pd.set_option('display.max_columns', None)  
 
+#Input DATA which is a pandas dataframe including 3 columns: tenor, price and coupon rates. Input FREQUENCY which is the payment frequency, eg semiannual=2, Input FACE VALUE of bond, eg 100
+#Example of input data frame is given below
+#n	  price	  coupon
+#0.5  100	4.00%
+#1    100	4.30%
+#1.5  100	4.50%
+#2    100	4.90%
 
-class bondanalytics:
+
+
+
+class bootstrapper:
     def __init__(self,data,frequency,face_value):
         self.data=data
         self.frequency=frequency
         self.face_value=face_value
-    def bootstrapper(self):
+    def spot_rates(self):
         n=len(self.data)
         pockets=[]
         spots=[]
@@ -69,17 +79,15 @@ class bondanalytics:
             spots.append(s_final)
         data['Spot Rates']=spots
     def binomial_pricing(self,T):
+        #In construction
         Nodes={}
         for a in range(0,T):
             for b in range(0,a+1):
                 Nodes[a,'_',b]=[]
         return Nodes
         
-testing=bondanalytics(data,2,100)
-test=testing.bootstrapper()
 
-print(test)
-
+#Below is mainly for charting spot vs coupon curves, not required for class functions
 fig=plt.figure()
 fig.show()
 ax=fig.add_subplot(111)
