@@ -1,0 +1,7 @@
+Portfolio selection code allows for portfolio construction by trying to:
+  a) Create all possible combinations of an n stock portfolio from a list of tickers provided
+  b) Code downloads stock data for tickers from yahoo finance
+  c) You have to then choose a benchmark (S&P 500 index chosen as default) or manually enter benchmakr risk and return targets
+  d) For now code assumes an equally-weighted portfolio, simulating all possible weight combinations with all possible stock combinations may create alot of computational requirements. For now code assumes equal weights
+  e) Code runs portfolio_sd class which calculates portfolio risk and return by applying formulas derived from the Modern Portfolio Theory
+  f) For each possible portfolio, code compares portfolio risk/return vs benchmark risk/return and shows potential 'winners'
